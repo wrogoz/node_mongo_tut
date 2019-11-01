@@ -21,33 +21,13 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true },(error,client)=>{
     }
     const db = client.db(databaseName);
 
-    
-//     db.collection('users').findOne( {_id:ObjectID("5dbaacf6ec03c06a29fe2a0d")} , (error,user)=> {
-//         if(error){
-//             return console.log('unable to find ')
-//         }
-//         console.log(user)
-//     })
-
-// db.collection('users').find({age:34}).toArray((error,users)=>{
-//     if(error){
-//         return console.log('efwef')
-//     }
-//     console.log(users)
-// })
-
-    db.collection('toDo').findOne({_id: ObjectID("5dbaaff11b389d6aa7123b67")},(err,res)=>{
-        if(err){
-            return console.log('error')
-        }
-        console.log(res)
-    })
-
-    db.collection('toDo').find({completed:false}).toArray((err,res)=>{
-        console.log(res)
-    })
-
-  
+   db.collection('toDo').deleteOne({
+       description:'wash a car'
+   }).then(res=>{
+       console.log('item deleted')
+   }).catch(err=>{
+       console.log(err)
+   })
 })
 
 
