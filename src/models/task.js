@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-
-
-const Task = mongoose.model('Task',
-{
+const bcrypt = require('bcryptjs');
+const userSchema = new mongoose.Schema({
     description:{
         type:String,
         required:true
@@ -14,5 +12,17 @@ const Task = mongoose.model('Task',
     }
 
 })
+
+
+userSchema.pre('save',async function(){
+    const task = this;
+
+    console.log('task pre workin fine')
+
+    
+})
+
+const Task = mongoose.model('Task',userSchema
+)
 
 module.exports = Task;
